@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Solution {
+    static List<String> list = new ArrayList<String>();
+    public String reverseWords(String s) {
+        StringBuilder temp = new StringBuilder();
+        boolean token = false;
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i)== ' '){
+                if(token) list.add(temp.toString());
+                token = false;
+                temp = new StringBuilder();
+            }else{
+                temp.append(s.charAt(i));
+                token = true;
+            }
+        }
+        if(!temp.toString().equals("")) list.add(temp.toString());
+        StringBuilder sb = new StringBuilder();
+        while(!list.isEmpty()){
+            String word = list.get(list.size()-1);
+            sb.append(word);
+            list.remove(list.size()-1);
+            sb.append(" ");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
+    }
+}
